@@ -1,0 +1,110 @@
+#include <stdio.h>
+#define N 5 // Define the stack size as a constant
+
+int rear = -1;
+int front=-1; // Initialize the top of the stack
+int queue[N];
+// Define the stack with a fixed size
+//int n; // Size of the stack
+
+void enqueue(int x)
+{
+
+    if (rear == N - 1)   // Check for stack overflow
+    {
+        printf("Overflow\n");
+    }
+    else if(front == -1 && rear == -1)
+    {
+
+        front =0;
+        rear=0;
+
+        queue[rear] = x;
+    }
+    else
+    {
+        rear++;
+        queue[rear] = x;
+
+    }
+}
+
+void dequeue()
+{
+    if (front == -1 && rear == -1)   // Check for stack underflow
+    {
+        printf("Empty\n");
+    }
+    else if(front== rear)
+    {
+        printf("%d",queue[front]);
+        front=-1;
+        rear=-1;
+    }
+    else
+    {
+        printf("Dequeue element: %d\n", queue[front]);
+        front++;
+    }
+}
+
+void display()
+{
+    if (front == -1 && rear==-1)
+    {
+        printf("Empty\n");
+    }
+    else
+    {
+        printf("Queue elements:\n");
+        for (int i = front; i <= rear; i++)
+        {
+            printf(" | %d |\n", queue[i]);
+        }
+    }
+}
+
+int main()
+{
+    int n;
+    int x;
+    printf("\n Enter the size of Queue [MAX=5]: ");
+    scanf("%d", &n);
+    printf("\n\t Queue OPERATIONS USING ARRAY");
+    printf("\n\t--------------------------------");
+    printf("\n\t 1.Enqueue\n\t 2.Dequeue\n\t 3.DISPLAY\n\t 4.EXIT");
+
+    int choice = 0;
+    while (choice != 4)
+    {
+        printf("\n Enter the Choice: ");
+        scanf("%d", &choice);
+        if (choice == 1)
+        {
+            printf("Enter a value to enqueue: ");
+            scanf("%d", &x);
+            enqueue(x);
+
+        }
+        else if (choice == 2)
+        {
+            dequeue();
+        }
+        else if (choice == 3)
+        {
+            display();
+        }
+        else if (choice == 4)
+        {
+            printf("\n\t EXIT POINT ");
+        }
+        else
+        {
+            printf("\n\t Please Enter a Valid Choice (1/2/3/4)");
+        }
+    }
+
+    return 0;
+}
+
